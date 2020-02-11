@@ -3,13 +3,50 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.efsavage</groupId>
 	<artifactId>hello-world-war</artifactId>
-	<version>1.0.0</version>
+	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>Hello World Web Application Repository</name>
 	<description>Simplest possible Java Webapp</description>
 
+	<repositories>
+        <repository>
+            <id>maven-central</id>
+            <url>http://nexus/repository/maven-central</url>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <snapshotRepository>
+          <id>maven-snapshots</id>
+          <name>maven-snapshots</name>
+          <url>http://nexus/repository/maven-snapshots</url>
+        </snapshotRepository>
+     </distributionManagement>
+
 	<build>
 		<plugins>
+			<plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <configuration>
+                        <url>http://10.0.2.5:8080/manager/html</url>
+                        <server>TomcatServer</server>
+                        <path>/App</path>
+                        <update>true</update>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.3</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>localNexus</serverId>
+                    <nexusUrl>http://nexus/</nexusUrl>
+                </configuration>
+            </plugin>
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
