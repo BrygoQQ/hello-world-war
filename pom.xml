@@ -25,7 +25,7 @@
 
 	<build>
 		<plugins>
-            <plugin>
+<!--             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
@@ -35,7 +35,17 @@
                         <path>/${project.build.finalName}</path>
                         <update>true</update>
                 </configuration>
-            </plugin>
+            </plugin> -->
+		<plugin>
+			<groupId>org.wildfly.plugins</groupId>
+			<artifactId>wildfly-maven-plugin</artifactId>
+			<version>1.2.2.Final</version>
+			<configuration>
+			    <id>wildfly</id>
+			    <hostname>10.0.2.7</hostname>
+			    <port>9990</port>
+			</configuration>
+		 </plugin>
             <!-- <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
